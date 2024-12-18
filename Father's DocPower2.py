@@ -56,7 +56,7 @@ def main(message):
     markup.add(types.InlineKeyboardButton('Админ',callback_data='admin'))
     markup.add(types.InlineKeyboardButton('Сотрудник',callback_data='user'))
     bot.send_message(message.chat.id,'Добро пожаловать в бот DocPower!',reply_markup=markup)
-    print(message)
+
 
 
 
@@ -70,7 +70,6 @@ def callback_message(callback_query):
             markup.add(types.InlineKeyboardButton('Предоставить доступ к контрактам',callback_data='doc'))
             markup.add(types.InlineKeyboardButton('Удалить сотрудника',callback_data='deleter'))
             bot.send_message(callback_query.message.chat.id,'Выберите опцию',reply_markup=markup)
-            print(callback_query.message.chat.id)
             bot.answer_callback_query(callback_query.id)
 
 
@@ -81,7 +80,6 @@ def callback_message(callback_query):
 
         else:
             bot.send_message(callback_query.message.chat.id,'Вы не обладаете правами администратора')
-            print(callback_query)
             bot.answer_callback_query(callback_query.id)
 
     elif callback_query.data =='user':
@@ -126,24 +124,21 @@ def callback_message(callback_query):
     elif callback_query.data=='adminrights':
         for callback_query.message.chat.id in list(set(visitors)):
             admins.append(callback_query.message.chat.id)
-            print(admins)
+
             bot.send_message(callback_query.message.chat.id,'Вам были предоставлены права администратора')
         bot.answer_callback_query(callback_query.id)
     elif callback_query.data=='userrights':
         for callback_query.message.from_user.id in list(set(visitors)):
             ret=bot.get_chat(callback_query.message.from_user.id)
-            print(ret.first_name)
+
             users.append(callback_query.message.from_user.id)
-            print('users=', callback_query)
+
             bot.send_message(callback_query.message.from_user.id,'Вам были предоставлены права сотрудника')
             names.append(ret.first_name  )
-            print(names)
-            print('Имя сотрудника', callback_query.message.from_user.first_name)
-            print(len(list(set(names))))
+
             qup = len(list(set(names)))
             qupi = list(set(names))
-            print(qup)
-            print(qupi)
+
         bot.answer_callback_query(callback_query.id)
         visitors.clear()
     if callback_query.data=='decline':
@@ -174,9 +169,9 @@ def callback_message(callback_query):
         bot.answer_callback_query(callback_query.id)
     for n in range(1,len(set(names))+1):
         if callback_query.data=='m'+str(n) :
-            print(users)
+
             p=users[n-1]
-            print(p)
+
             # bot.send_message(p,'Файлы для контракта №1')
             # bot.forward_message(p, -1002440265368, 70)
             # bot.answer_callback_query(callback_query.id)
@@ -196,9 +191,9 @@ def callback_message(callback_query):
         # for callback_query.message.chat.id in users:
     for m in range(1, len(set(names)) + 1):
         if callback_query.data == 'x'+str(m) :
-            print(users)
+
             p = users[m - 1]
-            print(p)
+
             # bot.send_message(p, 'Файлы для контракта №2')
             # bot.forward_message(p, -1002440265368, 71)
             # bot.answer_callback_query(callback_query.id)
@@ -216,9 +211,9 @@ def callback_message(callback_query):
         # for callback_query.message.chat.id in users:
     for q in range(1, len(set(names)) + 1):
         if callback_query.data == 'y'+str(q)  :
-            print(users)
+
             p = users[q - 1]
-            print(p)
+
             # bot.send_message(p, 'Файлы для контракта №3')
             # bot.forward_message(p, -1002440265368, 72)
             # bot.answer_callback_query(callback_query.id)
@@ -237,9 +232,9 @@ def callback_message(callback_query):
         # for callback_query.message.chat.id in users:
     for t in range(1, len(set(names)) + 1):
         if callback_query.data == 'j'+str(t) :
-            print(users)
+
             p = users[t - 1]
-            print(p)
+
             # bot.send_message(p, 'Файлы для контракта №4')
             # bot.forward_message(p, -1002440265368, 73)
             # bot.answer_callback_query(callback_query.id)
@@ -252,10 +247,7 @@ def callback_message(callback_query):
 
 
 
-    print('contracts 1 =', contracts1)
-    print('contracts 2 =', contracts2)
-    print('contracts 3 =', contracts3)
-    print('contracts 4 =', contracts4)
+
     if callback_query.data=='viewdoc':
         markup=types.InlineKeyboardMarkup()
         if callback_query.message.chat.id in contracts1:
@@ -313,9 +305,9 @@ def callback_message(callback_query):
         bot.answer_callback_query(callback_query.id)
     for n in range(1, len(set(names)) + 1):
         if callback_query.data == 'neas' + str(n):
-            print(users)
+
             p = users[n - 1]
-            print(p)
+
             # bot.send_message(p,'Файлы для контракта №1')
             # bot.forward_message(p, -1002440265368, 70)
             # bot.answer_callback_query(callback_query.id)
