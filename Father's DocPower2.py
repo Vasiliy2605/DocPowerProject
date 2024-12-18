@@ -110,8 +110,8 @@ def callback_message(callback_query):
             markup=types.InlineKeyboardMarkup()
             btn1 = types.InlineKeyboardButton('Предоставить права администратора',callback_data='adminrights')
             markup.row(btn1)
-            btn2=types.InlineKeyboardButton('Предоставить права сотрудника',callback_data='userrights')
-            btn3=types.InlineKeyboardButton('Отклонить в предоставлении прав',callback_data='decline')
+            btn2=types.InlineKeyboardButton('Права сотрудника',callback_data='userrights')
+            btn3=types.InlineKeyboardButton('Отклонить',callback_data='decline')
             markup.row(btn2, btn3)
             # names.append(callback_query.message.chat.first_name)
             # print(len(list(set(names))))
@@ -319,6 +319,14 @@ def callback_message(callback_query):
             # bot.send_message(p,'Файлы для контракта №1')
             # bot.forward_message(p, -1002440265368, 70)
             # bot.answer_callback_query(callback_query.id)
+            if users[n-1] in contracts1:
+                contracts1.remove(users[n-1])
+            if users[n - 1] in contracts2:
+                contracts2.remove(users[n-1] )
+            if users[n - 1] in contracts3:
+                contracts3.remove(users[n-1] )
+            if users[n - 1] in contracts4:
+                contracts4.remove(users[n-1])
             users.remove(users[n - 1])
             names.remove(names[n - 1])
             bot.answer_callback_query(callback_query.id)
