@@ -1,6 +1,7 @@
 import os
 import json
 from gc import callbacks
+from gettext import install
 from traceback import print_tb
 
 import settings
